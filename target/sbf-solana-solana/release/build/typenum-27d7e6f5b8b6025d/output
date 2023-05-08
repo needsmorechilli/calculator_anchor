@@ -1,0 +1,3 @@
+cargo:rerun-if-changed=build/main.rs
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/Users/natalieyeo/Documents/repos/wsos-calculator/target/sbf-solana-solana/release/build/typenum-27d7e6f5b8b6025d/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=/Users/natalieyeo/Documents/repos/wsos-calculator/target/sbf-solana-solana/release/build/typenum-27d7e6f5b8b6025d/out/op.rs

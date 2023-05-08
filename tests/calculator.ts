@@ -45,4 +45,37 @@ describe("calculator", () => {
     expect(account.result).to.eql(new anchor.BN(5))
 })
 
+//test out minus
+  it('Minus',async () => {
+    await program.methods.minus(new anchor.BN(3), new anchor.BN(4))
+    .accounts({
+        calculator: calculatorPair.publicKey,
+    })
+    .rpc()
+    const account = await program.account.calculator.fetch(calculatorPair.publicKey)
+    expect(account.result).to.eql(new anchor.BN(-1))
+  })
+
+  //test out multiplication
+  it('Multiply',async () => {
+    await program.methods.multiply(new anchor.BN(-3), new anchor.BN(6))
+    .accounts({
+        calculator: calculatorPair.publicKey,
+    })
+    .rpc()
+    const account = await program.account.calculator.fetch(calculatorPair.publicKey)
+    expect(account.result).to.eql(new anchor.BN(-18))
+  })
+
+    //test out division
+    it('Divide',async () => {
+      await program.methods.divide(new anchor.BN(20), new anchor.BN(5))
+      .accounts({
+          calculator: calculatorPair.publicKey,
+      })
+      .rpc()
+      const account = await program.account.calculator.fetch(calculatorPair.publicKey)
+      expect(account.result).to.eql(new anchor.BN(4))
+    })
+
 });

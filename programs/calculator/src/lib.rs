@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_lang::solana_program::entrypoint::ProgramResult;
 
-declare_id!("2VsDgBxxmv6cyKAJjjmKHggt777rN4ELvQ2W6yCzzpqp");
+declare_id!("6ZD53Cnb1k646CSP9zZDoooi7cjG4hoAFMQpnha7CWeG");
 
 #[program]
 pub mod calculator {
@@ -16,6 +16,24 @@ pub mod calculator {
     pub fn add(ctx: Context<Addition>, num1: i64, num2: i64) -> ProgramResult {
         let calculator = &mut ctx.accounts.calculator;
         calculator.result = num1 + num2;
+        Ok(())
+    }
+
+    pub fn minus(ctx: Context<Minus>, num1: i64, num2: i64) -> ProgramResult {
+        let calculator = &mut ctx.accounts.calculator;
+        calculator.result = num1 - num2;
+        Ok(())
+    }
+
+    pub fn multiply(ctx: Context<Multiply>, num1: i64, num2: i64) -> ProgramResult {
+        let calculator = &mut ctx.accounts.calculator;
+        calculator.result = num1 * num2;
+        Ok(())
+    }
+
+    pub fn divide(ctx: Context<Divide>, num1: i64, num2: i64) -> ProgramResult {
+        let calculator = &mut ctx.accounts.calculator;
+        calculator.result = num1 / num2;
         Ok(())
     }
     
@@ -35,6 +53,24 @@ pub struct Create<'info> {
 
 #[derive(Accounts)]
 pub struct Addition<'info> {
+    #[account(mut)]
+    pub calculator: Account<'info, Calculator>,
+}
+
+#[derive(Accounts)]
+pub struct Minus<'info> {
+    #[account(mut)]
+    pub calculator: Account<'info, Calculator>,
+}
+
+#[derive(Accounts)]
+pub struct Multiply<'info> {
+    #[account(mut)]
+    pub calculator: Account<'info, Calculator>,
+}
+
+#[derive(Accounts)]
+pub struct Divide<'info> {
     #[account(mut)]
     pub calculator: Account<'info, Calculator>,
 }
